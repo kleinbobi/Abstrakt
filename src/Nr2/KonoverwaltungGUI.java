@@ -66,29 +66,47 @@ public class KonoverwaltungGUI extends JFrame{
 
             }
         });
+
+        /**
+         * regelt das anzeigen des Ausgewälten Kontos
+         */
         anzeigeB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                int a;
+            try {
+                a = Integer.parseInt(textField2.getText());
+            }catch (NumberFormatException e){
+                message("Keine Zahl");
+                return;
+            }
 
-                int a = Integer.parseInt(textField2.getText());
 
-                System.out.println("a == "+a);
 
-              //  for(int i = 0 ;  i < konten.length ; i++){
-                //    System.out.println(konten[i].toString());
-                //}
-
-                textArea1.append( konten[a].toString()+"\n");
+            try {
+                textArea1.append(konten[a].toString() + "\n");
+            }catch (NullPointerException e){
+                message("Diese konto ist nicht forhanden");
+            }
                 textField2.setText("");
 
             }
         });
+
+
         buchenB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                int a = Integer.parseInt(textField2.getText());
-                int betrag = Integer.parseInt(textField1.getText());
+                int betrag;
+                int a;
+            try{
+               a = Integer.parseInt(textField2.getText());
+               betrag = Integer.parseInt(textField1.getText());
+            }catch (NumberFormatException e){
 
+                message("Keine Zahl");
+                return;
+            }
                 try {
                     konten[a].buchen(betrag);
                     textArea1.append( konten[a].toString()+"\n");
@@ -99,13 +117,22 @@ public class KonoverwaltungGUI extends JFrame{
                 textField1.setText("");
             }
         });
+
+        /**
+         * Regelt die Überweiseung zwischen den zwei konnetn
+         */
         uberB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                int betrag = Integer.parseInt(textField1.getText());
-                int send = Integer.parseInt(textField2.getText());
-                int empfang = Integer.parseInt(textField3.getText());
-
+                int betrag, send, empfang;
+                try {
+                     betrag = Integer.parseInt(textField1.getText());
+                     send = Integer.parseInt(textField2.getText());
+                     empfang = Integer.parseInt(textField3.getText());
+                }catch (NumberFormatException e){
+                    message("Keine Zahl");
+                    return;
+                }
                 try {
                     konten[send].buchen(betrag*-1);
                     try{
@@ -135,6 +162,9 @@ public class KonoverwaltungGUI extends JFrame{
 
     private void message(Exception e){
         JOptionPane.showMessageDialog(KonoverwaltungGUI.this,e.getMessage(),"UPSI!",JOptionPane.WARNING_MESSAGE);
+    }
+    private void message(String e){
+        JOptionPane.showMessageDialog(KonoverwaltungGUI.this,e,"UPSI!",JOptionPane.WARNING_MESSAGE);
     }
 
 }

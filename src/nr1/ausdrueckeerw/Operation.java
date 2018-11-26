@@ -12,6 +12,8 @@ public abstract class Operation extends Operand
 	private Operand[] operand = new Operand[2];
 	
 	public Operation(Operand operand0, Operand operand1) {
+		this.add(operand0);
+		this.add(operand1);
 		this.setOperand(operand0);
 		this.setOperand(operand1);
 	}
@@ -46,4 +48,13 @@ public abstract class Operation extends Operand
 			if (position == 1)
 				this.operand[1] = null;
 	}
+
+
+	@Override
+	public boolean getAllowsChildren() {
+		return true;
+	}
+
+
+
 }

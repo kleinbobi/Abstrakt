@@ -9,6 +9,8 @@ public abstract class ArgOperation extends Operand {
 
 
     public ArgOperation(Operand operand, Argument argument) {
+        this.add(operand);
+        this.add(argument);
         this.setOperand(operand);
         this.setArgument(argument);
     }
@@ -36,4 +38,8 @@ public abstract class ArgOperation extends Operand {
         this.operand = this.operand;
     }
 
+    @Override
+    public boolean getAllowsChildren() {
+        return true;
+    }
 }

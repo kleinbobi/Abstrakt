@@ -22,6 +22,11 @@ public class Sparkonto extends Konto{
         return sparrate;
     }
 
+    /**
+     * setzt die Sparrate sie darf nicht kleiner gleich 0 sein
+     * @param sparrate
+     * @throws KontoException
+     */
     public void setSparrate(double sparrate) throws KontoException{
         if(sparrate <= 0){
             throw new KontoException("Sparrate darf nicht 0 sein");

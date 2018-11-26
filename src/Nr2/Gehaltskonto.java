@@ -11,7 +11,11 @@ public class Gehaltskonto extends Konto{
 
     }
 
-
+    /**
+     *
+     * @param startueberziehung
+     * @throws KontoException
+     */
     public static void setStartueberziehung(double startueberziehung) throws KontoException{
         if(startueberziehung<=0){
             Gehaltskonto.startueberziehung=startueberziehung;
@@ -19,6 +23,7 @@ public class Gehaltskonto extends Konto{
             throw new KontoException("Überzihungsramen > 0");
         }
     }
+
 
     public static double getStartueberziehung(){
         return startueberziehung;
@@ -33,6 +38,8 @@ public class Gehaltskonto extends Konto{
     }
 
     public double getUeberziehung(){
+
+
         return ueberziehung;
     }
 
@@ -42,7 +49,7 @@ public class Gehaltskonto extends Konto{
     public double getZinsen() {
         double ret=0.0;
 
-//fertigmachennnnnnnnn
+        //fertigmachennnnnnnnn
 
         return ret;
     }
